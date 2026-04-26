@@ -1,0 +1,7 @@
+node_modules
+dist
+**/.DS_Store
+*.local
+.npm-cache
+.npmrc
+public/images/gallery/game-scene2-original-backup.mp4
