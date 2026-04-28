@@ -3,6 +3,8 @@ import { motion, AnimatePresence, useInView, useMotionValue, useSpring } from 'f
 import confetti from 'canvas-confetti'
 import { Heart, Users, Star, DollarSign, ExternalLink, ThumbsUp, Sparkles } from 'lucide-react'
 
+const B = import.meta.env.BASE_URL
+
 const STATS = [
   { label: '累计赞藏', value: 92.3, suffix: 'K+', icon: Heart, iconKey: 'heart', color: '#ec4899' },
   { label: '账号粉丝', value: 7500, suffix: '+', icon: Users, iconKey: 'users', color: '#6366f1' },
@@ -13,21 +15,21 @@ const STATS = [
 const PANELS = [
   {
     key: 'profile',
-    src: '/images/xiaohongshu/xhs-profile.jpg',
+    src: B + 'images/xiaohongshu/xhs-profile.jpg',
     label: '账号主页',
     alt: '小红书主页截图',
     type: 'profile',
   },
   {
     key: 'shop',
-    src: '/images/xiaohongshu/xhs-shop.jpg',
+    src: B + 'images/xiaohongshu/xhs-shop.jpg',
     label: '店铺页面',
     alt: '小红书店铺截图',
     type: 'shop',
   },
   {
     key: 'notes',
-    src: '/images/xiaohongshu/xhs-note.jpg',
+    src: B + 'images/xiaohongshu/xhs-note.jpg',
     label: '热门笔记',
     alt: '小红书热门笔记截图',
     type: 'notes',
@@ -124,8 +126,8 @@ function AnimatedStat({ stat, delay }) {
       onClick={handleClick}
       className="relative flex flex-col items-center gap-1.5 p-4 cursor-pointer rounded-2xl transition-colors duration-500"
       style={{
-        background: isHovered ? `${stat.color}0F` : 'transparent',
-        boxShadow: isHovered ? `0 0 24px ${stat.color}10` : 'none',
+        background: isHovered ? `${stat.color}12` : 'transparent',
+        boxShadow: isHovered ? `0 0 24px ${stat.color}12` : 'none',
       }}
     >
       {/* Icon with micro-animation */}
@@ -138,11 +140,11 @@ function AnimatedStat({ stat, delay }) {
         <stat.icon className="w-4 h-4" style={{ color: stat.color }} />
       </motion.div>
 
-      <span className="text-xl md:text-2xl font-bold text-slate-800 tracking-tight">
+      <span className="text-xl md:text-2xl font-bold text-gray-100 tracking-tight">
         {formatted}
         <span className="text-base md:text-lg font-semibold" style={{ color: stat.color }}>{stat.suffix}</span>
       </span>
-      <span className="text-[10px] text-slate-400 font-mono tracking-wider uppercase">{stat.label}</span>
+      <span className="text-[10px] text-gray-500 font-mono tracking-wider uppercase">{stat.label}</span>
 
       {/* Floating hearts on click */}
       <AnimatePresence>
@@ -229,8 +231,8 @@ function MagneticButton({ href, children }) {
       style={{ x: springX, y: springY }}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-slate-800 text-white text-sm font-medium
-        hover:bg-slate-900 transition-colors shadow-sm cursor-pointer"
+      className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-teal-400 via-cyan-400 to-purple-400 text-[#090b0f] text-sm font-medium
+        hover:shadow-[0_0_30px_rgba(45,212,191,0.25)] transition-shadow cursor-pointer"
     >
       {children}
       <ExternalLink className="w-3.5 h-3.5" />
@@ -274,14 +276,14 @@ function PhonePanel({ panel }) {
       className="flex flex-col items-center"
     >
       {/* Phone mockup frame */}
-      <div className="relative w-full max-w-[280px] mx-auto transition-shadow duration-300 hover:shadow-xl hover:shadow-slate-200/50">
+      <div className="relative w-full max-w-[280px] mx-auto transition-shadow duration-300 hover:shadow-xl hover:shadow-teal-400/10">
         {/* Phone bezel */}
-        <div className="rounded-[2.5rem] bg-white border-[3px] border-slate-200 shadow-md overflow-hidden">
+        <div className="rounded-[2.5rem] bg-[#1a1d25] border-[3px] border-white/[0.08] shadow-md overflow-hidden">
           {/* Status bar */}
-          <div className="flex items-center justify-between px-6 py-2.5 bg-white">
-            <span className="text-[10px] font-semibold text-slate-800">9:41</span>
+          <div className="flex items-center justify-between px-6 py-2.5 bg-[#1a1d25]">
+            <span className="text-[10px] font-semibold text-gray-400">9:41</span>
             <div className="flex items-center gap-1">
-              <svg width="14" height="10" viewBox="0 0 14 10" className="text-slate-800">
+              <svg width="14" height="10" viewBox="0 0 14 10" className="text-gray-400">
                 <rect x="0" y="0" width="12" height="10" rx="2" fill="none" stroke="currentColor" strokeWidth="1" />
                 <rect x="2" y="1.5" width="8" height="7" rx="1" fill="currentColor" />
                 <rect x="12.5" y="3" width="1.5" height="4" rx="0.75" fill="currentColor" />
@@ -291,7 +293,7 @@ function PhonePanel({ panel }) {
 
           {/* Screen area - no crop */}
           <div
-            className="relative bg-slate-50 cursor-pointer select-none"
+            className="relative bg-[#0f1117] cursor-pointer select-none"
             onClick={handleTap}
           >
             <img
@@ -313,7 +315,7 @@ function PhonePanel({ panel }) {
               initial={{ opacity: 1 }}
               animate={{ opacity: 0 }}
               transition={{ delay: 3, duration: 1 }}
-              className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-sm text-[10px] text-slate-500 shadow-sm whitespace-nowrap pointer-events-none"
+              className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-white/[0.08] backdrop-blur-sm text-[10px] text-gray-400 shadow-sm whitespace-nowrap pointer-events-none"
             >
               双击{panel.type === 'notes' ? '点赞' : '互动'}
             </motion.div>
@@ -322,7 +324,7 @@ function PhonePanel({ panel }) {
       </div>
 
       {/* Label */}
-      <span className="mt-3 text-xs font-medium text-slate-500">{panel.label}</span>
+      <span className="mt-3 text-xs font-medium text-gray-500">{panel.label}</span>
     </motion.div>
   )
 }
@@ -339,13 +341,13 @@ export default function VirtualHost() {
           viewport={{ once: true }}
           className="text-center mb-6"
         >
-          <span className="text-[10px] tracking-[0.3em] text-slate-400 uppercase font-mono">
+          <span className="text-[10px] tracking-[0.3em] text-gray-500 uppercase font-mono">
             Brand Incubation
           </span>
-          <h2 className="mt-3 text-3xl md:text-4xl font-bold text-slate-800">
+          <h2 className="mt-3 text-3xl md:text-4xl font-bold text-gray-100 font-serif">
             品牌孵化：<span className="text-accent">小红书爆款企划</span>
           </h2>
-          <p className="mt-2 text-slate-400 text-sm">深度共创 · 跨界操盘 · 品效合一</p>
+          <p className="mt-2 text-gray-400 text-sm">深度共创 · 跨界操盘 · 品效合一</p>
         </motion.div>
 
         {/* Intro */}
@@ -356,13 +358,13 @@ export default function VirtualHost() {
           transition={{ delay: 0.1 }}
           className="bento p-6 md:p-8 mb-6 max-w-3xl mx-auto"
         >
-          <p className="text-sm md:text-base text-slate-600 leading-relaxed">
-            与<span className="font-semibold text-slate-800">景德镇陶艺设计师</span>深度共创，主推
-            <span className="font-semibold text-slate-800">萌系手作陶瓷</span>。
+          <p className="text-sm md:text-base text-gray-400 leading-relaxed">
+            与<span className="font-semibold text-gray-200">景德镇陶艺设计师</span>深度共创，主推
+            <span className="font-semibold text-gray-200">萌系手作陶瓷</span>。
             我在此项目中跨界担任<span className="text-accent font-semibold">视觉与内容核心</span>，
-            负责陶瓷产品的<span className="font-medium text-slate-700">3D 数字建模</span>、
-            <span className="font-medium text-slate-700">商品视觉拍摄</span>以及
-            <span className="font-medium text-slate-700">小红书网感文案策划</span>。
+            负责陶瓷产品的<span className="font-medium text-gray-300">3D 数字建模</span>、
+            <span className="font-medium text-gray-300">商品视觉拍摄</span>以及
+            <span className="font-medium text-gray-300">小红书网感文案策划</span>。
           </p>
         </motion.div>
 
@@ -374,7 +376,7 @@ export default function VirtualHost() {
           transition={{ delay: 0.15 }}
           className="bento p-4 md:p-8 mb-6 max-w-3xl mx-auto"
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-black/[0.04]">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/[0.06]">
             {STATS.map((stat, i) => (
               <AnimatedStat key={stat.label} stat={stat} delay={i * 0.12} />
             ))}

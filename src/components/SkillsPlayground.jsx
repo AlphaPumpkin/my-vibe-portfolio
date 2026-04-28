@@ -59,11 +59,11 @@ function ToolBadge({ tool }) {
         className="relative w-[68px] h-[68px] rounded-[18px] flex items-center justify-center cursor-pointer
           backdrop-blur-sm"
         style={{
-          background: hovered ? `${tool.color}14` : 'rgba(255,255,255,0.45)',
-          border: `1.5px solid ${hovered ? tool.color + '40' : 'rgba(255,255,255,0.65)'}`,
+          background: hovered ? `${tool.color}14` : 'rgba(255,255,255,0.04)',
+          border: `1.5px solid ${hovered ? tool.color + '40' : 'rgba(255,255,255,0.08)'}`,
           boxShadow: hovered
             ? `0 10px 30px ${tool.color}1A, 0 0 0 4px ${tool.color}08`
-            : '0 2px 8px rgba(0,0,0,0.03)',
+            : 'none',
         }}
         animate={{
           x: [0, drift.xAmp, 0, -drift.xAmp, 0],
@@ -80,7 +80,7 @@ function ToolBadge({ tool }) {
       >
         <tool.icon
           className="w-6 h-6 transition-colors duration-500"
-          style={{ color: hovered ? tool.color : '#94a3b8' }}
+          style={{ color: hovered ? tool.color : '#64748b' }}
           strokeWidth={1.5}
         />
       </motion.div>
@@ -88,7 +88,7 @@ function ToolBadge({ tool }) {
       {/* Label */}
       <motion.span
         className="mt-3 text-[11px] font-medium transition-colors duration-500"
-        style={{ color: hovered ? tool.color : '#94a3b8' }}
+        style={{ color: hovered ? tool.color : '#64748b' }}
       >
         {tool.name}
       </motion.span>
@@ -107,13 +107,13 @@ export default function SkillsPlayground() {
           viewport={{ once: true }}
           className="text-center mb-8"
         >
-          <span className="text-[10px] tracking-[0.3em] text-slate-400 uppercase font-mono">
+          <span className="text-[10px] tracking-[0.3em] text-gray-500 uppercase font-mono">
             Tech Stack
           </span>
-          <h2 className="mt-3 text-3xl md:text-4xl font-bold text-slate-800">
+          <h2 className="mt-3 text-3xl md:text-4xl font-bold text-gray-100 font-serif">
             技术<span className="text-accent">工具栈</span>
           </h2>
-          <p className="mt-2 text-slate-400 text-sm">微重力悬浮 · 磁性吸附 · 悬停唤醒品牌色彩</p>
+          <p className="mt-2 text-gray-400 text-sm">微重力悬浮 · 磁性吸附 · 悬停唤醒品牌色彩</p>
         </motion.div>
 
         {/* Glass Bento container */}
@@ -121,7 +121,7 @@ export default function SkillsPlayground() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-white/60 backdrop-blur-xl rounded-[2rem] border border-white/70 shadow-sm p-8 md:p-12"
+          className="bg-white/[0.03] backdrop-blur-md rounded-[2rem] border border-white/[0.08] p-8 md:p-12"
         >
           <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-9 gap-4 md:gap-6">
             {TOOLS.map((tool) => (
