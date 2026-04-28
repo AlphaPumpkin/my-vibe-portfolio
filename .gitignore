@@ -6,3 +6,10 @@ dist
 .npmrc
 public/images/gallery/game-scene2-original-backup.mp4
 .vercel
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
