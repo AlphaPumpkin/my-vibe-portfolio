@@ -5,3 +5,4 @@ dist
 .npm-cache
 .npmrc
 public/images/gallery/game-scene2-original-backup.mp4
+.vercel
